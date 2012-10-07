@@ -1,6 +1,7 @@
 'use strict';
 
 // Ensure we have bind capabilities
+// Source: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind
 if (!Function.prototype.bind) {
   Function.prototype.bind = function (oThis) {
     if (typeof this !== "function") {
@@ -28,7 +29,7 @@ if (!Function.prototype.bind) {
 var IMGPreloader = function(options) {
   this._unprocessedImagesByHost = {};
   this._processingImagesByHost = {};
-  this._concurrentConnectionsPerHost = 4;   //TODO: Overwriteable option
+  this._concurrentConnectionsPerHost = 6;   //TODO: Choose best option based on browser
 };
 
 IMGPreloader.prototype.processQueue = function processQueue() {

@@ -53,9 +53,8 @@ IMGPreloader.prototype.processQueue = function processQueue() {
         if (queueItem !== undefined) {
           this._processingImagesByHost[host].push(queueItem);
           
-          var imgElement = new Image('img');          
+          var imgElement = new Image();          
           imgElement.src = queueItem;
-          imgElement.setAttribute('host', host);
 
           if (imgElement.complete === true) {
             this.removeProcessedItem(queueItem);

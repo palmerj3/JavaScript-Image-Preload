@@ -101,15 +101,17 @@ IMGPreloader.prototype.cleanQueue = function cleanQueue() {
 };
 
 IMGPreloader.prototype.push = function push(src) {
-  var uri = new Uri(src);
+  if(src){
+    var uri = new Uri(src);
 
-  if (this._unprocessedImagesByHost[uri.host()] === undefined) {
-    this._unprocessedImagesByHost[uri.host()] = [];
+    if (this._unprocessedImagesByHost[uri.host()] === undefined) {
+      this._unprocessedImagesByHost[uri.host()] = [];
+    }
+
+    this._unprocessedImagesByHost[uri.host()].push(src);
+    this.cleanQueue();
+    this.processQueue();
   }
-
-  this._unprocessedImagesByHost[uri.host()].push(src);
-  this.cleanQueue();
-  this.processQueue();
 };
 
 IMGPreloader.prototype.push_many = function push_many(arrayOfSrc) {
